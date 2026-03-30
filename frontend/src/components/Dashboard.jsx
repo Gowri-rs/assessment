@@ -48,7 +48,7 @@ const Dashboard = () =>{
         </CardContent>
       </CardActionArea>
             <Button variant="contained" onClick={()=> navigate(`/edit/${id}`)}>EDIT</Button>
-            <Button variant="contained" onClick={()=>{handledelete(item._id)}}>SUBMIT</Button>
+            <Button variant="contained" onClick={()=>{handledelete(item._id)}}>DELETE</Button>
     </Card>
     })}
     </>
