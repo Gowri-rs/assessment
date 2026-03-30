@@ -12,8 +12,9 @@ function App() {
     <>
      <Navbar/>
      <Routes>
-      <Route path="/add" element={<AddFeedback/>}/>
       <Route path="/dashboard" element={<Dashboard/>}/>
+      <Route path="/add" element={<AddFeedback/>}/>
+      
       <Route path="/edit" element={<EditFeedback/>}/>
 
 

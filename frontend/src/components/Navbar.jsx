@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 
 
 const Navbar=() =>{
+   
     return(
         <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -23,7 +24,7 @@ const Navbar=() =>{
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Admin Panel
           </Typography>
-          <Button color="inherit">DASHBOARD</Button>
+          <Button color="inherit" >DASHBOARD</Button>
           <Button color="inherit">Add Feedback</Button>
 
         </Toolbar>

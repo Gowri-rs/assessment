@@ -2,57 +2,67 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
-import {useNavigate} from 'react-router-dom'
-import { useState } from 'react';
 import Button from '@mui/material/Button';
+
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
 import { useEffect } from 'react';
-import axios from 'axios'
 
-const Dashboard = () =>{
-    const navigate = useNavigate();
-    const [feedback,setFeedback] = useState([])
 
-    const fetchdata = async() =>{
-       const res= await axios.get('http://localhost:4000/feedback/')
-       setFeedback(res.data)
+const DashBoard = () => {
+
+    const navigate= useNavigate();
+    const [feedback, setFeedback] = useState([])
+
+    const fetchData = async() => {
+      try {
+        const res = await axios.get(`http://localhost:4000/feedback`, feedback)
+        setFeedback(res.data)
+      } catch (error) {
+        console.log(error)
+      }
+
     }
 
-    useEffect = () => ({
-    
+    useEffect(() => {
+      fetchData();
     },[])
 
-        const handledelete = async(id) =>{
-            await axios.delete(`http://localhost:4000/feedback/${id}`);
-            fetchdata();
-        }
+    const deleteFeedback = async(id) =>{
+         await axios.delete(`http://localhost:4000/feedback/${id}`)
+         fetchData();
+    }
 
-    return(
-        <>
-        {feedback.filter(Boolean).map((item)=> {
-        <Card key= {id} sx={{ maxWidth: 345 }}>
+
+  return (
+    <div>
+    {feedback.filter(Boolean).map((item) => (
+    <Card key={item._id} sx={{ maxWidth: 345 }}>
       <CardActionArea>
         
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {item._id}
-          </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             {item.courseName}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            {item.Comments}
+            {item._id}
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            {item.Duration}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             {item.Rating}
           </Typography>
         </CardContent>
       </CardActionArea>
-            <Button variant="contained" onClick={()=> navigate(`/edit/${id}`)}>EDIT</Button>
-            <Button variant="contained" onClick={()=>{handledelete(item._id)}}>DELETE</Button>
+      <Button variant="contained"  onClick={() => {deleteFeedback(item._id)}}>delete</Button>
+      <Button variant="contained"  onClick={() => {navigate(`/edit/${item._id}`)}}>Edit</Button>
+
     </Card>
-    })}
-    </>
-    )
+    ))}
+    </div>
+  )
 }
 
-export default Dashboard
+export default DashBoard

@@ -9,7 +9,7 @@ const EditFeedback =() =>{
 
     
     const navigate = useNavigate();
-    const [edit,setedit] =useState({
+    const [edit,setEdit] =useState({
         courseName: "",
         Comments:"",
         Rating:""
@@ -23,6 +23,7 @@ const EditFeedback =() =>{
 
     const handleSubmit =async() =>{
         await axios.post("http://localhost:4000/feedback/add", edit)
+        alert("feedback added successfully")
         navigate("/dashboard")
     }
      return(
@@ -31,8 +32,10 @@ const EditFeedback =() =>{
                   sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
                   noValidate
                   autoComplete="off"
-                  direction = 'flex'
+                  display = 'flex'
                   flexDirection='column'
+                  alignItems='center'
+
             
                 >
                   <TextField id="outlined-basic" label="Course Name" variant="outlined" name='courseName' onChange={handleChange} />

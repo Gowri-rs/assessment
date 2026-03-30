@@ -31,8 +31,9 @@ const AddFeedback=() =>{
       sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
       noValidate
       autoComplete="off"
-      direction = 'flex'
+      display = 'flex'
       flexDirection='column'
+      alignItems='center'
 
     >
       <TextField id="outlined-basic" label="Course Name" variant="outlined" name='courseName' onChange={handleChange} />
